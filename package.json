@@ -1,0 +1,24 @@
+{
+  "name": "diplomska",
+  "version": "1.0.0",
+  "description": "Movie chatbot",
+  "main": "backend.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "movie",
+    "chatbot",
+    "recommender"
+  ],
+  "author": "Viktorija Anchevska",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^3.6.8",
+    "firebase-admin": "^4.0.6"
+  }
+}
