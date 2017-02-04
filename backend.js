@@ -12,23 +12,28 @@ admin.initializeApp({
 var db = admin.database();
 var ref = db.ref("/rules");
 var firebaseRoot = db.ref("/ratings");
-var user = firebaseRoot.child("-Kbv0__3COasMhlYZtat");
+var user = firebaseRoot.child("-Kc7JUs5LKf7EHrO6hOe"); //user 547 in excel, with max ratings
 var matrix = [];
 var userNumber = 0;
 
 function init(){
+	console.log("reading data...");
 	firebaseRoot.on("child_added", function(snapshot, prevChildKey) {
   		var userArray = snapshot.val();
+  		var userRatings = Array.apply(null, Array(9125)).map(Number.prototype.valueOf,0);
   		for (var i = 0; i < userArray.length; i++) {
   			userItem = userArray[i];
-  			var userRatings = [];
-  			userRatings[userItem.movieID] = userItem.rating;
+  			var index = parseInt(userItem.movieID,10);
+  			var rating = parseInt(userItem.rating,10);
+  			userRatings[index] = rating;
   		}
   		matrix[userNumber] = userRatings;
-  		console.log("matrixx");
-  		console.log(userRatings);
   		userNumber++;
-	});	
+	});
+
+	firebaseRoot.on("value", function(snapshot, prevChildKey) {
+		console.log("done reading");
+	});		
 }
 
 init()
